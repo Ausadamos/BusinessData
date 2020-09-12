@@ -1,12 +1,8 @@
 ﻿using BusinessData.Interface;
 using BusinessData.Property;
-using BusinessData.Models;
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Configuration;
 
 namespace BusinessData.Network
@@ -50,7 +46,7 @@ namespace BusinessData.Network
                     string _name = "Database_Name : " + _dbName[1];
 
                     string[] _dbIP = _array[1].Split('=');
-                    string _ip =  _dbIP[1];
+                    string _ip = _dbIP[1];
 
                     _result = _name + " | " + _ip;
                 }
@@ -140,6 +136,6 @@ namespace BusinessData.Network
             return sql;
         }
     }
-    
+
 }
 

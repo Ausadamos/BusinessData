@@ -1,8 +1,6 @@
-﻿using System;
+﻿using BusinessData.Property;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using BusinessData.Property;
 
 namespace BusinessData.Models
 {
@@ -17,7 +15,7 @@ namespace BusinessData.Models
                 resultData = base.TransConnection();
 
                 if (resultData.StatusOnDb == true)
-                {                    
+                {
                     resultData = base.TransSelectCommand(sqlList[0]);
 
                     string totalCount = resultData.ResultOnDb.Rows[0]["TOTAL_COUNT"].ToString();
@@ -43,7 +41,7 @@ namespace BusinessData.Models
 
                 if (resultData.StatusOnDb == true)
                 {
-                    resultData = base.TransSelectCommand(sql);                   
+                    resultData = base.TransSelectCommand(sql);
                 }
             }
             finally
@@ -61,7 +59,7 @@ namespace BusinessData.Models
                 resultData = base.TransConnection();
 
                 if (resultData.StatusOnDb == true)
-                {                  
+                {
                     resultData = base.TransExecuteCommand(sql);
 
                     if (resultData.StatusOnDb == true)
@@ -169,7 +167,7 @@ namespace BusinessData.Models
                 resultData = base.TransConnection();
 
                 if (resultData.StatusOnDb == true)
-                {                   
+                {
                     resultData = base.TransExecuteCommand(sql);
 
                     if (resultData.StatusOnDb == true)
@@ -191,22 +189,22 @@ namespace BusinessData.Models
             return resultData;
         }
 
-       # region  Dispose Object
+        #region  Dispose Object
 
-            public void Dispose()
+        public void Dispose()
+        {
+            try
             {
-                try
-                {
-                    base.TransClose();
-                }
-                finally
-                {
-                    GC.SuppressFinalize(this);
-                }
-
+                base.TransClose();
+            }
+            finally
+            {
+                GC.SuppressFinalize(this);
             }
 
-      #endregion
+        }
+
+        #endregion
 
 
     }

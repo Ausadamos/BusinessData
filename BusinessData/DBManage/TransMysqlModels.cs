@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
+﻿using BusinessData.Property;
+using MySql.Data.MySqlClient;
+using System;
 using System.Configuration;
 using System.Data;
-using BusinessData.Property;
-using MySql.Data.MySqlClient;
 
 namespace BusinessData.Models
 {
@@ -21,7 +17,7 @@ namespace BusinessData.Models
 
         protected TransMysqlModels()
         {
-            strConnection = ConfigurationManager.ConnectionStrings["ConnectionStrMysql"].ConnectionString;            
+            strConnection = ConfigurationManager.ConnectionStrings["ConnectionStrMysql"].ConnectionString;
         }
 
         protected OutputOnDbProperty TransConnection()
@@ -60,12 +56,12 @@ namespace BusinessData.Models
 
         protected OutputOnDbProperty TransSelectCommand(string sql)
         {
-             MySqlConnection  connecter = new MySqlConnection(strConnection);
+            MySqlConnection connecter = new MySqlConnection(strConnection);
 
-             DataTable tableResult = new DataTable();            
-            
+            DataTable tableResult = new DataTable();
+
             try
-            {               
+            {
                 connecter.Open();
 
                 MySqlDataAdapter userDataAdaptor = new MySqlDataAdapter(sql, connecter);
@@ -100,10 +96,10 @@ namespace BusinessData.Models
             return dataOutPut;
         }
 
-    
+
 
         protected OutputOnDbProperty TransExecuteCommand(string sql)
-        {           
+        {
             try
             {
                 userCommand.CommandText = sql;
@@ -149,8 +145,8 @@ namespace BusinessData.Models
         }
 
         protected void TransClose()
-        {    
-           
+        {
+
             conTrans.Close();
             conTrans.Dispose();
         }
